@@ -34,7 +34,7 @@ podTemplate(containers: [
 
     stage('Push to ECR') {
       container('docker') {
-        docker.withRegistry("${ECR_ADDRESS}", "ecr:eu-west-2:aws-access") {
+        docker.withRegistry("${ECR_PROTOCOL}${ECR_ADDRESS}", "ecr:eu-west-2:aws-access") {
           docker.image("course-day-service").push("${DATETIME_TAG}")
         }
       }
@@ -42,7 +42,7 @@ podTemplate(containers: [
 
     stage('Kubernetes deploy') {
       container('helm') {
-        sh "helm list"
+        sh "helm install --set image.repository=${ECR_ADDRESS} --set image.tag=${DATETIME_TAG} course-day-service ./helm/spring-boot"
       }
     }
   }
