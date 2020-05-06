@@ -2,7 +2,7 @@ podTemplate(containers: [
   containerTemplate(name: 'maven', image: 'maven:3.6.0-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
   containerTemplate(name: 'docker-dind', image: 'docker:19-dind', alwaysPullImage: true, privileged: true, envVars: [ envVar(key: 'DOCKER_TLS_CERTDIR', value: '')],),
   containerTemplate(name: 'docker', image: 'docker:19', alwaysPullImage: true, ttyEnabled: true, command: 'cat',envVars: [envVar(key: 'DOCKER_HOST', value: 'tcp://localhost:2375')],),
-  containerTemplate(name: 'helm', image: 'dtzar/helm-kubectl:3.1.2', ttyEnabled: true, command: 'cat', privileged: true),
+  containerTemplate(name: 'helm', image: 'dtzar/helm-kubectl:3.2.0', ttyEnabled: true, command: 'cat', privileged: true),
 ]) {
 
   node(POD_LABEL) {
@@ -41,7 +41,9 @@ podTemplate(containers: [
     }
 
     stage('Kubernetes deploy') {
-      sh "kubectl get pods"
+      container('helm') {
+        sh "helm list"
+      }
     }
   }
 }
