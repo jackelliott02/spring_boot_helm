@@ -39,5 +39,9 @@ podTemplate(containers: [
         }
       }
     }
+
+    stage('Kubernetes deploy') {
+      sh "kubectl get pods"
+    }
   }
 }
