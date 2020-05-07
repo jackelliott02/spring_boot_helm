@@ -42,7 +42,7 @@ podTemplate(containers: [
 
     stage('Kubernetes deploy') {
       container('helm') {
-        sh "helm upgrade --set image.repository=${ECR_ADDRESS} --set image.tag=${DATETIME_TAG} course-day-service ./helm/spring-boot"
+        sh "helm install --set image.repository=${ECR_ADDRESS} --set image.tag=${DATETIME_TAG} course-day-service ./helm/spring-boot"
       }
     }
   }
