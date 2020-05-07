@@ -32,6 +32,8 @@ For the **Access Key ID** and **Secret Access Key** enter the values from your t
 
 You can retrieve these by doing `cat ~/.aws/credentials`
 
+### CI/CD
+
 **Pipeline creation**
 
 Follow through the steps on the videos in Google Classroom to create the course-day-service
@@ -42,6 +44,7 @@ Once you've got the Tech Returners course-day-service successfully deploying, tr
 
 You'll need to update the __Jenkinsfile__ with the correct GitHub location, as well as the GitHub reference on the Jenkins job configuration.
 
+### Full removal and destroying
 
 **Fully destroying your cluster**
 
