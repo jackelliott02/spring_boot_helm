@@ -4,7 +4,7 @@
 
 The following guide shows how to get Jenkins deploying this appplication as part of the Dinner and DevOps web series.
 
-### Preparation
+### Preparation
 
 **Update your cluster service accounts**
 
