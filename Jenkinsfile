@@ -6,9 +6,9 @@ podTemplate(containers: [
 ]) {
 
   node(POD_LABEL) {
-    
+
     stage('Run tests') {
-      git 'https://github.com/techreturners/spring_boot_helm.git'
+      git 'https://github.com/jackelliott02/spring_boot_helm.git'
       container('maven') {
           sh 'mvn test'
       }
@@ -25,7 +25,7 @@ podTemplate(containers: [
       script {
         def now = new Date()
         DATETIME_TAG = now.format("yy-MM-dd_HHmm", TimeZone.getTimeZone('UTC'))
-      } 
+      }
       container('docker') {
         echo "Building docker image..."
         docker.build("course-day-service", ".")
